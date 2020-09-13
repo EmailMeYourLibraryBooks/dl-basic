@@ -1,0 +1,78 @@
+@charset "ISO-8859-1";
+
+body {
+font-family:"Times New Roman", Times, serif;
+color:blue;
+}
+
+aside {
+color:purple;
+}
+
+nav {
+color:red;
+}
+
+li {
+color:orange;
+}
+
+article {
+color:green;
+}
+
+summary {
+color:orange;
+}
+
+table {
+
+border-spacing: 2px;
+border-style: dashed;
+border-color: green;
+border-collapse: collapse;
+background-color: blue;
+border-width: 5px;
+padding: 1px;
+border-style: solid;
+border-color: gray;
+background-color: white;
+-moz-border-radius: 2px;
+}
+
+
+th 
+{ 
+border: 2px solid gray;
+text-align: center; 
+font-weight: bold; 
+}
+
+
+td 
+{ 
+border: 2px solid gray;
+text-align: center; 
+font-weight: bold; 
+}
+
+
+td.dogs 
+{ 
+border: 2px solid gray;
+text-align: center; 
+font-weight: lighter; 
+color: green;
+}
+
+details {
+color:brown;
+}
+
+p.thicker {
+font-weight:800;
+} 
+
+p#crazy { 
+color: #873E19;
+ } 
