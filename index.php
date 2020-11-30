@@ -37,7 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Items</a>
+        <a class="nav-link" href="items.php">Items</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,11 +47,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           <a class="dropdown-item" href="https://www.lectionarypage.net/" target="_blank">Lecionary Page</a>
           <a class="dropdown-item" href="https://www.hymnary.org" target="_blank">Hymnary</a>        
         </div>
+		<li>
+				<a href="includes/logout.php">
+					<button type="button" class="btn btn-outline-dark">Sign Out</button>
+				</a>
+	    </li>
       </li>
     </ul>
-	<div class="float-right">
-	<a href="includes/logout.php"><button type="button" class="btn btn-outline-primary">Sign Out</button></a>
-	</div>
   </div>
   </div>
 </nav>
@@ -60,23 +62,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <div class="container mt-4"><h1>Search.</h1></div>
 <div class="container">
-	<div class="row border p-5">
+	<div class="row border bg-light p-5">
 		<div class="col-md-12">
-		  <form action="includes/search.inc.php">
-            <div class="input-group" id="adv-search">
-                <input type="text" class="form-control" placeholder="Search everything" />
-              <div class="input-group-btn">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary">Search</button>
-                </div>
-              </div>
-            </div>
-		  </form>
-        </div>	
-		
-  </div>
+		  <form action="includes/search.inc.php" method="get">
+			  <div class="input-group" id="adv-search">
+                <input type="text" class="form-control" name="search" placeholder="Search">
+				  <div class="input-group-btn">
+					<div class="btn-group" role="group">
+						<select name="column" class="custom-select">
+							<option value="title,composer,date,season,medium,call_no,publisher,rights">Keyword</option>
+							<option value="title">Title</option>
+							<option value="composer">Composer</option>
+							<option value="date">Date</option>
+							<option value="season">Liturgical season</option>
+							<option value="medium">Med. of performance</option>
+							<option value="call_no">Call No.</option>
+							<option value="publisher">Publisher</option>
+							<option value="rights">Rights</option>
+					  </select>
+					  <button type="submit" class="btn btn-primary">Search</button>
+					</div>
+				  </div>
+				</div>
+			  </form>
+			</div>	
+ 		 </div>
 	  <div class="row mt-2">
-    <div class="container text-center p-2"><a href="insert.php"><button type="button" class="btn btn-outline-primary">Add a record</button></a></div>
+    <div class="container text-center p-2">
+		<a href="insert.php">
+			<button type="button" class="btn btn-outline-success">Add a record</button>
+		</a>
+	</div>
 </div>
 	
 	

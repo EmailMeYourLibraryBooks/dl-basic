@@ -37,7 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Items</a>
+        <a class="nav-link" href="items.php">Items</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,80 +48,89 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           <a class="dropdown-item" href="https://www.hymnary.org" target="_blank">Hymnary</a>        
         </div>
       </li>
+		<li>
+			<a href="includes/logout.php">
+				<button type="button" class="btn btn-outline-dark">Sign Out</button>
+			</a>
+		</li>
     </ul>
+	  
   </div>
   </div>
 </nav>
 	  
 	  
-	  
-	  
-	  
-	  
-<h1 class="container mt-5">Create a New Record.</h1>
-<div  class="container border p-4 mt-4" > 
-	<form action="includes/insert.inc.php" method="POST">
+
+<h1 class="container mt-4">Create a New Record.</h1>
+<div  class="container border bg-light p-4 mt-4" > 
+	<form action="includes/insert.inc.php" method="POST" enctype="multipart/form-data">
 	  <div class="form-group">
-		<label for="title">Title</label>
-		<input type="text" class="form-control" name="title" placeholder="Enter the title of the work">
+		<label for="title" >Title</label>
+		<input type="text" required="true" class="form-control" name="title" placeholder="Enter the title of the work">
 	  </div>
 	  <div class="form-group">
 		<label for="composer">Composer</label>
-		<input type="text" class="form-control" name="composer" placeholder="Enter the composer of the work">
+		<input type="text" required="true" class="form-control" name="composer" placeholder="Enter the composer of the work">
 	  </div>
 	  <div class="form-group">
 		<label for="date">Composition Year</label>
-		<input type="text" class="form-control" name="date" placeholder="Enter the composition year of the work">
+		<input type="text" required="true" class="form-control" name="date" placeholder="Enter the composition year of the work">
 	  </div>
 	  <div class="form-group">
 	   <label for="season">Choose a Liturgical Season:</label>
 	    <div class="form-group">
-			<select class="form-control" id="season" name="season">
-			  <option value="1">Advent</option>
-			  <option value="2">Christmas</option>
-			  <option value="3">Epiphany</option>
-			  <option value="4">Lent</option>
-			  <option value="5">Holy Week</option>
-			  <option value="6">Easter</option>
-			  <option value="7">Pentecost</option>
-			  <option value="8">General Use</option>
+			<select required="true" class="custom-select" id="season" name="season">
+			  <option value="Advent">Advent</option>
+			  <option value="Christmas">Christmas</option>
+			  <option value="Epiphany">Epiphany</option>
+			  <option value="Lent">Lent</option>
+			  <option value="Holy Week">Holy Week</option>
+			  <option value="Easter">Easter</option>
+			  <option value="Pentecost">Pentecost</option>
+			  <option value="General Use">General Use</option>
 			</select> 
 		</div>
 	   </div> 
 	  <div class="form-group">
 		<label for="medium">Medium of performance</label>
-		<input type="text" class="form-control" name="medium" placeholder="Enter the medium of performance for the work">
+		<input type="text" required="true" class="form-control" name="medium" placeholder="Enter the medium of performance for the work">
 	  </div>
 	  <div class="form-group">
 		<label for="call_no">Call Number</label>
-		<input type="text" class="form-control" name="call_no" placeholder="Enter the call number for the copy in the library">
+		<input type="text" required="true" class="form-control" name="call_no" placeholder="Enter the call number for the copy in the library">
 	  </div>
 	  <div class="form-group">
 		<label for="publisher">Publisher</label>
-		<input type="text" class="form-control" name="publisher" placeholder="Enter the publisher of the edition">
+		<input type="text" required="true" class="form-control" name="publisher" placeholder="Enter the publisher of the edition">
 	  </div>
 	  <div class="form-group">
 	   <label for="rights">Choose a Rights Statement: </label>
 		<div class="form-group">
-			<select class="form-control" id="rights" name="rights">
-			  <option value="1">In Copyright</option>
-			  <option value="2">In Copyright - EU Orphan Work</option>
+			<select class="custom-select" required="true" id="rights" name="rights">
+			  <option value="In Copyright">In Copyright</option>
+			  <option value="In Copyright - EU Orphan Work">In Copyright - EU Orphan Work</option>
 			  <option value="3">In Copyright - Educational Use Permitted</option>
-			  <option value="4">In Copyright - Non-Commercial Use Permitted</option>
-			  <option value="5">In Copyright - Rights-holder(s) Unlocatable or Unidentifiable</option>
-			  <option value="6">No Copyright - Contractual Restrictions</option>
-			  <option value="7">No Copyright - Non-Commercial Use Only</option>
-			  <option value="8">No Copyright - Other Known Legal Restrictions</option>
-			  <option value="9">No Copyright - United States</option>
-			  <option value="10">Public Domain</option>
-			  <option value="11">Copyright Not Evaluated</option>
-			  <option value="12">Copyright Undetermined</option>
-			  <option value="13">No Known Copyright</option>
+			  <option value="In Copyright - Educational Use Permitted">In Copyright - Non-Commercial Use Permitted</option>
+			  <option value="In Copyright - Rights-holder(s) Unlocatable or Unidentifiable">In Copyright - Rights-holder(s) Unlocatable or Unidentifiable</option>
+			  <option value="No Copyright - Contractual Restrictions">No Copyright - Contractual Restrictions</option>
+			  <option value="No Copyright - Non-Commercial Use Only">No Copyright - Non-Commercial Use Only</option>
+			  <option value="No Copyright - Other Known Legal Restrictions">No Copyright - Other Known Legal Restrictions</option>
+			  <option value="No Copyright - United States">No Copyright - United States</option>
+			  <option value="Public Domain">Public Domain</option>
+			  <option value="Copyright Not Evaluated">Copyright Not Evaluated</option>
+			  <option value="Copyright Undetermined">Copyright Undetermined</option>
+			  <option value="No Known Copyright">No Known Copyright</option>
 			</select>
 		</div>
+		<div class="form-group">
+		  <label for="upload">Upload a file:</label>
+		  <div class="form-control-file">
+		    <input type="file" accept="application/pdf" class="form-control-file" name="file"/>
+		  </div>
+	    </div>
 	   <div class="form-group mt-4"> 
 	  <button type="submit" class="btn btn-primary">Submit</button>
-		 </div
+		  </div>
 	</form>
 </div> 
 	  

@@ -11,7 +11,17 @@
     <title>Sign Up</title>
   </head>
   <body>
+	<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect to login page
+if(isset($_SESSION["loggedin"])) {
+    header("location: index.php");
+    exit;
+}
 
+?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <div class="container">
@@ -49,17 +59,17 @@
 
 		  <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Enter a username"> 
+                <input type="text" required="true" name="username" class="form-control" placeholder="Enter a username"> 
             </div>  
             
 		  <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter a password">			
+                <input type="password" required="true" name="password" class="form-control" placeholder="Enter a password">			
             </div>
 		  
 		   <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                <input type="email" required="true" name="email" class="form-control" placeholder="Enter your email">
             </div>
             
 		  <div class="form-group">

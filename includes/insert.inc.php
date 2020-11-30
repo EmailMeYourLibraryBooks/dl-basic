@@ -3,21 +3,28 @@ require_once "config.inc.php";
 require_once "../classes/scoreset.class.php" ;
 
 if (isset($_POST['title'], $_POST['composer'], $_POST['date'], $_POST['season'], $_POST['medium'], $_POST['call_no'], $_POST['publisher'], $_POST['rights'])) {
+	
 	// Declare variables
-	$title = $_POST['title'] ;
-	$composer = $_POST['composer'] ;
+	$title = $con->real_escape_string($_POST['title']) ;
+	$composer = $con->real_escape_string($_POST['composer']) ;
 	$date = $_POST['date'] ;
 	$season = $_POST['season'] ;
 	$medium = $_POST['medium'] ;
 	$call_no = $_POST['call_no'] ;
-	$publisher = $_POST['publisher'] ;
+	$publisher = $con->real_escape_string($_POST['publisher']) ;
 	$rights = $_POST['rights'] ;
+	
+	$file_info = pathinfo($_FILES['file']['name']) ;
+	$file = uniqid() . "." . $file_info['extension'] ;
+	
+	// Move uploaded file to uploads folder
+	$file_loc = $_FILES['file']['tmp_name'] ;
+	$folder = "../uploads/" ;
+	move_uploaded_file($file_loc, $folder . $file) ;
 
-	//echo $title . " | " . $composer . " | " . $date . " | " . $season . " | " . $medium . " | " . $call_no . " | " . $publisher . " | " . $rights;
 
 	// Insert new score
-	$newScore = new ScoreInsert($title,$composer,$date,$season,$medium,$call_no,$publisher,$rights,$con);
-	echo $newScore->title;
+	$newScore = new ScoreInsert($title,$composer,$date,$season,$medium,$call_no,$publisher,$rights,$file,$con);
 	$newScore->scoreSet();
 	?>	
 <!doctype html>
@@ -33,7 +40,42 @@ if (isset($_POST['title'], $_POST['composer'], $_POST['date'], $_POST['season'],
     <title>Success!</title>
   </head>
   <body>
-    <div class="container mt-4 alert alert-success" role="alert"> Your record was successfuly added. <a href="../index.php">Click here to go home.</a> </div>
+	  
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container">
+		  <a class="navbar-brand" href="../index.php">SLEC Digital Music Library</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+			  <li class="nav-item">
+				<a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="../items.php">Items</a>
+			  </li>
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Resources
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="https://www.lectionarypage.net/" target="_blank">Lecionary Page</a>
+				  <a class="dropdown-item" href="https://www.hymnary.org" target="_blank">Hymnary</a>        
+				</div>
+			  </li>
+			<li>
+				<a href="includes/logout.php">
+					<button type="button" class="btn btn-outline-dark">Sign Out</button>
+				</a>
+			</li>
+			</ul>
+
+		  </div>
+		  </div>
+		</nav>
+
+    <div class="container mt-4 alert alert-success" role="alert"> The record was successfuly added. <a href="../index.php">Click here to go home</a>, or <a href="../insert.php">click here to add another record.</a> </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

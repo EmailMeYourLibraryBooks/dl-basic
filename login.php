@@ -13,6 +13,18 @@
 </head>
 	
 <body>
+
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect to login page
+if(isset($_SESSION["loggedin"])) {
+    header("location: index.php");
+    exit;
+}
+
+?>
 	
 <!--Banner-->
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,11 +70,11 @@
         <form action="includes/login.inc.php" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Enter your username">        
+                <input type="text" required="true" name="username" class="form-control" placeholder="Enter your username">        
             </div>    
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                <input type="password" required="true" name="password" class="form-control" placeholder="Enter your password">
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">

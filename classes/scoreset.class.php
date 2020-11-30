@@ -11,12 +11,12 @@
 		public $call_no ;
 		public $publisher ;
 		public $rights ;
-		//public $file_name;
+		public $file ;
 		public $insert_query ;
 		public $con ;
 
 		// Methods
-		public function __construct($title, $composer, $date, $season, $medium, $call_no, $publisher, $rights, $con) {
+		public function __construct($title, $composer, $date, $season, $medium, $call_no, $publisher, $rights, $file, $con) {
 			$this->title = $title ;
 			$this->composer = $composer ;
 			$this->date = $date ;
@@ -25,6 +25,7 @@
 			$this->call_no = $call_no ;
 			$this->publisher = $publisher ;
 			$this->rights = $rights ;
+			$this->file = $file ;
 			$this->con = $con ;
 		}
 		
@@ -37,7 +38,8 @@
 					medium,
 					call_no,
 					publisher,
-					rights
+					rights,
+					file
 				) VALUES (
 					'$this->title',
 					'$this->composer',
@@ -46,7 +48,8 @@
 					'$this->medium',
 					'$this->call_no',
 					'$this->publisher',
-					'$this->rights')";
+					'$this->rights',
+					'$this->file')";
 			$this->con->query($insert_query);
 			echo $this->con->error;
 		}
