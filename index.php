@@ -37,7 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="items.php">Items</a>
+        <a class="nav-link" href="items.php">All Items</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,15 +70,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				  <div class="input-group-btn">
 					<div class="btn-group" role="group">
 						<select name="column" class="custom-select">
-							<option value="title,composer,date,season,medium,call_no,publisher,rights">Keyword</option>
-							<option value="title">Title</option>
-							<option value="composer">Composer</option>
-							<option value="date">Date</option>
-							<option value="season">Liturgical season</option>
-							<option value="medium">Med. of performance</option>
-							<option value="call_no">Call No.</option>
-							<option value="publisher">Publisher</option>
-							<option value="rights">Rights</option>
+							<option value="a.title, a.composer, a.date, a.medium, a.publisher, a.call_no">Keyword</option>
+							<option value="a.title">Title</option>
+							<option value="a.composer">Composer</option>
+							<option value="a.date">Date</option>
+							<option value="b.season">Liturgical season</option>
+							<option value="a.medium">Med. of performance</option>
+							<option value="a.call_no">Call No.</option>
+							<option value="a.publisher">Publisher</option>
+							<option value="c.rights">Rights</option>
 					  </select>
 					  <button type="submit" class="btn btn-primary">Search</button>
 					</div>
