@@ -1,22 +1,21 @@
 <?php
-
-	class ScoreInsert {
+	require_once "DbH.class.php";
+	class ScoreInsert extends DbH {
 		
 		// Properties
-		public $title ;
-		public $composer ;
-		public $date ;
-		public $season ;
-		public $medium ;
-		public $call_no ;
-		public $publisher ;
-		public $rights ;
-		public $file ;
-		public $insert_query ;
-		public $con ;
+		private $title ;
+		private $composer ;
+		private $date ;
+		private $season ;
+		private $medium ;
+		private $call_no ;
+		private $publisher ;
+		private $rights ;
+		private $file ;
+		private $insert_query ;
 
 		// Methods
-		public function __construct($title, $composer, $date, $season, $medium, $call_no, $publisher, $rights, $file, $con) {
+		public function __construct($title, $composer, $date, $season, $medium, $call_no, $publisher, $rights, $file) {
 			$this->title = $title ;
 			$this->composer = $composer ;
 			$this->date = $date ;
@@ -26,7 +25,6 @@
 			$this->publisher = $publisher ;
 			$this->rights = $rights ;
 			$this->file = $file ;
-			$this->con = $con ;
 		}
 		
 		public function scoreSet () {
@@ -50,10 +48,13 @@
 					'$this->publisher',
 					'$this->rights',
 					'$this->file')";
-			$this->con->query($insert_query);
-			echo $this->con->error;
+			if ($this->connect()->query($insert_query)) {
+				header("location: ../insert-success.php") ;
+			} else {
+				echo $this->connect()->error;
 		}
 	}
+}
 
 
 

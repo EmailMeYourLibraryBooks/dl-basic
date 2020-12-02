@@ -1,17 +1,15 @@
 <?php
-
-class ScoreGet {
+require_once "DbH.class.php";
+class ScoreGet extends DbH {
 	
 	// Properties
-	public $search_term ;
-	public $column ;
-	public $con ;
+	private $search_term ;
+	private $column ;
 	
 	// Methods
-	public function __construct($search_term,$column,$con) {
+	public function __construct($search_term,$column) {
 		$this->search_term = $search_term ;
 		$this->column = $column ;
-		$this->con = $con ;
 	}
 	
 	public function search() {
@@ -24,19 +22,12 @@ class ScoreGet {
   				    JOIN rights c
                 		ON c.id = a.rights
   				    WHERE MATCH ($this->column)
-				            AGAINST ('$this->search_term')";
-				//"SELECT * 
-				//FROM scores 
-				//WHERE MATCH($this->column) 
-				//AGAINST('$this->search_term')";
-			if ($result = $this->con->query($search_query)) {
-				
-				require_once '../includes/results.inc.php' ;
-				
-		} else {
-				echo $this->con->error;
-			}
-  
+				        AGAINST ('$this->search_term')";
+			if ($result = $this->connect()->query($search_query)) {
+				require_once '../includes/results.inc.php' ;				
+			} else {
+				echo $this->connect()->error;
+		}
 	}
 	
 	public function getAllScores() {
@@ -46,17 +37,14 @@ class ScoreGet {
   				    JOIN seasons b
                 		ON b.id = a.season
   				    JOIN rights c
-                		ON c.id = a.rights";
-				
-				//"SELECT * 
-				//FROM scores
-				//ORDER BY composer";
-			if ($result = $this->con->query($query)) {
+                		ON c.id = a.rights
+					ORDER BY title asc";
+			if ($result = $this->connect()->query($query)) {
 				require_once 'includes/allscores.inc.php' ;
-		}
-		
+		} else {
+				echo $this->connect()->error;
+			}
 	}
-	
 } 
 ?>
 

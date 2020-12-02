@@ -78,8 +78,6 @@
 									  </div>
 								  </div>
 				  			</div>
-								<!-- Add 'File' data fetch here -->
-							</tr>
 						<?php } ?>					  
 				  </div>
 
